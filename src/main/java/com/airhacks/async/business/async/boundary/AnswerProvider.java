@@ -6,7 +6,6 @@
 package com.airhacks.async.business.async.boundary;
 
 import com.airhacks.async.business.async.control.Thinker;
-import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -38,8 +37,8 @@ public class AnswerProvider {
         System.out.println("Received Event");
         Supplier<String> supplier = thinker::getAnswer;
         try {
-            CompletableFuture.supplyAsync(supplier, mes).thenAccept(consumer).get(5, TimeUnit.SECONDS);
-        } catch (InterruptedException | ExecutionException | TimeoutException ex) {
+            CompletableFuture.supplyAsync(supplier, mes).thenAccept(consumer).get();
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(AnswerProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
